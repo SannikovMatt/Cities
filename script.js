@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         data[lang].sort(sortCountries);
 
-     
+
 
         for (let country of data[lang]) {
             let countryBlock = document.createElement('dropdown-lists__countryBlock');
@@ -212,16 +212,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         defaultList.style.transform = 'translateX(-100%)';
                         selectList.style.transform = 'translateX(-100%)';
-                    } else if(target.closest('.dropdown-lists__list--autocomplete')){
+                    } else if (target.closest('.dropdown-lists__list--autocomplete')) {
 
                         defaultList.style.transform = 'translateX(0)';
-                        selectList.style.transform = 'translateX(0)'; 
+                        selectList.style.transform = 'translateX(0)';
                     }
                     setListSelectCountry(e, data);
 
 
                 } else if (cityClick) {
-                    autocompliteList.style.display= 'none';
+                    autocompliteList.style.display = 'none';
 
                     defaultList.style.display = 'none';
                     defaultList.style.transform = 'translateX(0)';
@@ -234,7 +234,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!lang) {
             let date = new Date('2030/01/01');
-            lang = prompt('Введите зачение EN RU DE');
+            let keep = true;
+            do {
+                
+                lang = prompt('Введите зачение EN RU DE');
+                if(['EN', 'RU', 'DE'].includes(lang.toUpperCase())){
+                    keep = false;
+                }
+
+            }
+            while (keep);
+
+            lang = lang.toUpperCase();
             document.cookie = `lang=${lang};expires=${date}`;
         }
         lang = document.cookie;
